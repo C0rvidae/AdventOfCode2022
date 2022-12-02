@@ -14,18 +14,17 @@ def part1(games):
 
 def part2(games):
     score = 0
-    plays = {'X': 0, 'Y': 3, 'Z': 6}
     corrptie = {'A': 1, 'B': 2, 'C': 3}
     corrplos = {'A': 3, 'B': 1, 'C': 2}
     corrpwin = {'A': 2, 'B': 3, 'C': 1}
     for game in games:
         match game[1]:
             case 'X':
-                score += plays[game[1]] + corrplos[game[0]]
+                score += corrplos[game[0]]
             case 'Y':
-                score += plays[game[1]] + corrptie[game[0]]
+                score += 3 + corrptie[game[0]]
             case 'Z':
-                score += plays[game[1]] + corrpwin[game[0]]
+                score += 6 + corrpwin[game[0]]
     print(score)
 
 

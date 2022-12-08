@@ -32,25 +32,23 @@ def fill_stacks(stacks, boxes, size):
 
 def parse_instructions(stacks, instructions):
     for instruction in instructions:
-        print(instruction)
         for _ in range(instruction[0]):
             stacks[instruction[2] - 1].append(stacks[instruction[1] - 1].pop())
     print("".join([_[-1] for _ in stacks]))
 
 
-def part1(items):
-    boxes, numbers, instructions = extract_data(items)
-    stack_amount = int(numbers[-1:])
-    stacks = [[] for _ in range(stack_amount)]
-    nstacks = fill_stacks(stacks, boxes, stack_amount)
-    parse_instructions(nstacks, instructions)
-
-
-def part2(items):
-    pass
+def parse_instructions2(stacks, instructions):
+    for instruction in instructions:
+        stacks[instruction[2] - 1] += stacks[instruction[1] - 1][0 - instruction[0]:]
+        stacks[instruction[1] - 1] = stacks[instruction[1] - 1][:0 - instruction[0]]
+    print("".join([_[-1] for _ in stacks]))
 
 
 with open('day5_input.txt', 'r') as f:
     data = [_[:-1] for _ in f.readlines()]
-    part1(data)
-    # part2(data)
+    boxes, numbers, instructions = extract_data(data)
+    stack_amount = int(numbers[-1:])
+    stacks = [[] for _ in range(stack_amount)]
+    nstacks = fill_stacks(stacks, boxes, stack_amount)
+    parse_instructions(nstacks, instructions)
+    parse_instructions2(nstacks, instructions)

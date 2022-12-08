@@ -50,5 +50,7 @@ with open('day5_input.txt', 'r') as f:
     stack_amount = int(numbers[-1:])
     stacks = [[] for _ in range(stack_amount)]
     nstacks = fill_stacks(stacks, boxes, stack_amount)
-    parse_instructions(nstacks, instructions)
+    # Part 1
+    # parse_instructions(nstacks, instructions)
     parse_instructions2(nstacks, instructions)
+    # part2(data)
